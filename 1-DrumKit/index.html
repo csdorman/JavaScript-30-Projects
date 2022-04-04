@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS Drum Kit</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="keys">
+        <div class="key" data-key="KeyA">
+            <kbd>A</kbd>
+            <span class="sound">clap</span>
+        </div>
+        <div class="key" data-key="KeyS">
+            <kbd>S</kbd>
+            <span class="sound">hi-hat</span>
+        </div>
+        <div class="key" data-key="KeyD">
+            <kbd>D</kbd>
+            <span class="sound">kick</span>
+        </div>
+        <div class="key" data-key="KeyF">
+            <kbd>F</kbd>
+            <span class="sound">open hi-hat</span>
+        </div>
+        <div class="key" data-key="71">
+            <kbd>G</kbd>
+            <span class="sound">boom</span>
+        </div>
+        <div class="key" data-key="72">
+            <kbd>H</kbd>
+            <span class="sound">ride</span>
+        </div>
+        <div class="key" data-key="74">
+            <kbd>J</kbd>
+            <span class="sound">snare</span>
+        </div>
+        <div class="key" data-key="75">
+            <kbd>K</kbd>
+            <span class="sound">tom-tom</span>
+        </div>
+        <div  class="key" data-key="76">
+            <kbd>L</kbd>
+            <span class="sound">tink</span>
+        </div>
+    </div>
+
+    <audio data-key="KeyA" src="sounds/clap.wav"></audio>
+    <audio data-key="KeyS" src="sounds/hihat.wav"></audio>
+    <audio data-key="KeyD" src="sounds/kick.wav"></audio>
+    <audio data-key="KeyF" src="sounds/openhat.wav"></audio>
+    <audio data-key="" src=""></audio>
+    <audio data-key="" src=""></audio>
+    <audio data-key="" src=""></audio>
+    <audio data-key="" src=""></audio>
+    <audio data-key="" src=""></audio>'
+
+    <script>
+        window.addEventListener("keydown", (e) => {
+            console.log(e.code)
+            const audio = document.querySelector("audio")
+
+        })
+    </script>
+
+</body>
+</html>
