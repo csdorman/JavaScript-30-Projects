@@ -1,27 +1,44 @@
 html {
     font-size: 15px;
-    background-color: aqua;
 }
 
 body, html {
     font-family: monospace;
     padding: 20px 10px;
-    background-color: chartreuse;
+    background-color: hsl(0, 0%, 13%);
+}
+
+.title {
+    text-align: center;
+    font-size: 2rem;
+    color: hsl(214,18%,90%);
+}
+
+.app {
+    border: 5px solid hsl(214, 18%, 90%);
+    border-radius: 10px;
+    background-color: hsl(209, 82%, 60%);
+    height: 70vh;
+}
+
+.app p {
+    font-size: 1.5rem;
+    font-family: sans-serif;
+    text-align: center;
+    margin-top: 50px;
 }
 
 .keys {
     display: flex;
     flex: 1;
-    height: 80vh;
     align-items: center;
     justify-content: center;
-    border: 5px solid black;
-    background-color: chocolate;
+    padding-top: 10rem;
 }
 
 .key {
     width: 10rem;
-    border: 5px solid darkblue;
+    border: 5px solid hsl(0,0%,13%);
     border-radius: 10px;
     min-height: 5rem;
     font-size: 1.2rem;
@@ -38,15 +55,30 @@ kbd {
 }
 
 .sound {
-    color: antiquewhite;
+    color: hsl(214, 18%, 90%);
     font-size: .8rem;
 }
 
 .playing {
-    border-color: #a23d2d;
+    border-color: hsl(190, 42%, 67%);
     transform: scale(1.2);
-    box-shadow: 0 0 1rem #a23d2d;
-    background-color: darkblue;
+    box-shadow: 0 0 1rem hsl(190, 42%, 67%);
+    background-color: hsl(0,0%,100%);
 }
 
+.playing span {
+    color: hsl(0, 0%,13%);
+}
+
+footer {
+    text-align: center;
+    background: hsl(0,0%,33%);
+    color: hsl(209,82%, 60%);
+    min-height: 3rem;
+    border-radius: 10px;
+}
+
+footer p {
+    padding-top: 10px;
+}
 
