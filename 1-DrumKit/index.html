@@ -70,8 +70,6 @@
     <audio data-key="KeyL" src="sounds/tink.wav"></audio>
 
     <script>
-        //TODO Investigate quieter sound on key repeat.
-        //TODO Finalize CSS styling
         function playSound(e) {
             const audio = document.querySelector(`audio[data-key=${e.code}]`)
             const key = document.querySelector(`.key[data-key=${e.code}]`)
