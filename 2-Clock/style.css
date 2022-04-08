@@ -71,3 +71,9 @@ body {
     right: 46%;
     font-size: 2rem;
   }
+
+button {
+    margin-top: 20px;
+    padding: 5px;
+    width: 10rem
+}
