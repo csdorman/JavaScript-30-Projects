@@ -13,23 +13,26 @@
       <div class="h3">3</div>
       <div class="h6">6</div>
       <div class="h9">9</div>
-      <div class="hand hour-hand"></div>
-      <div class="hand min-hand"></div>
-      <div class="hand second-hand"></div>
+      <div class="hand hour-hand tick"></div>
+      <div class="hand min-hand tick"></div>
+      <div class="hand second-hand tick"></div>
     </div>
     <div class="buttons">
-      <button class="tick">Tick</button>
-      <button class="sweep">Sweep</button>
+      <button class="btn tick">Tick/Sweep Toggle</button>
+      <button class="btn sweep">Sweep</button>
 
     </div>
   </div>
 
     <script>
-      //TODO Add functionality to change hand sweep style
-      //TODO Add functionality to adjust time zone?
+      //TODO Add functionality to adjust time zone
       const secondHand = document.querySelector('.second-hand')
       const minuteHand = document.querySelector('.min-hand')
       const hourHand = document.querySelector('.hour-hand')
+      const sweepStyleBtn = document.querySelector('button')
+      const allHands = document.querySelectorAll('.hand')
+
+      //Show the time
       function setDate() {
         const now = new Date()
         const seconds  = now.getSeconds()
@@ -43,6 +46,29 @@
         hourHand.style  = `transform: rotate(${hourDegrees}deg)`
       }
       setInterval(setDate, 1000)
+
+      //Change style of sweep hand
+      function setSweepClasses() {
+        allHands.forEach((e) => {
+          e.classList.remove('tick')
+          e.classList.add('sweep')
+        })
+      }
+      function setTickClasses() {
+        allHands.forEach((e) => {
+          e.classList.remove('sweep')
+          e.classList.add('tick')
+        })
+      }
+      function toggleSecondHandSweep() {
+        if(hourHand.classList.contains('tick')) {
+          setSweepClasses()
+        } else {
+          setTickClasses()
+        }
+      }
+
+      sweepStyleBtn.addEventListener('click', toggleSecondHandSweep)
     </script>
 </body>
 </html>

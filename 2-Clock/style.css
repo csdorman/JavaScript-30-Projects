@@ -35,7 +35,15 @@ body {
     transform-origin: 100%;
     transform: rotate(90deg);
     transition: all 0.5s;
-    transition-timing-function: cubic-bezier(.95, .05, .8, .04);
+    transition-timing-function: cubic-bezier(.68,-0.55,.27,1.55);
+}
+
+.tick {
+
+}
+
+.sweep {
+    transition-timing-function: linear;
 }
 
 .second-hand {
