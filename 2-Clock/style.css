@@ -83,5 +83,8 @@ body {
 button {
     margin-top: 20px;
     padding: 5px;
-    width: 10rem
+    width: 10rem;
+    border: 5px solid darkgrey;
+    border-radius: 10px;
+    box-shadow: 2px 2px 3px black;
 }
