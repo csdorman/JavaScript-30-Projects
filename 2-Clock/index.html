@@ -18,20 +18,41 @@
       <div class="hand second-hand tick"></div>
     </div>
     <div class="buttons">
-      <button class="btn tick">Tick/Sweep Toggle</button>
-
+      <button class="sweep-style tick">Tick/Sweep Toggle</button>
+      <button class="time-zone">UTC/Local Time</button>
+      <div class="zone">Time Zone</div>
     </div>
   </div>
 
     <script>
-      //TODO Add functionality to adjust time zone
+      //TODO Add functionality to adjust time zone (Toggle between local and UTC)
 
       const secondHand = document.querySelector('.second-hand')
       const minuteHand = document.querySelector('.min-hand')
       const hourHand = document.querySelector('.hour-hand')
-      const sweepStyleBtn = document.querySelector('button')
+      const sweepStyleBtn = document.querySelector('.sweep-style')
+      const zoneBtn = document.querySelector('.time-zone')
       const allHands = document.querySelectorAll('.hand')
 
+
+      // Get local time
+      function setLocalTime() {
+        const now = new Date()
+        const seconds  = now.getSeconds()
+        const min = now.getMinutes()
+        const hour = now.getHours()
+        console.log("Local", now)
+      }
+      // Get UTC time
+      function setUTCTime() {
+        const now = new Date()
+        const secondsUTC = now.getUTCSeconds()
+        const minUTC = now.getUTCMinutes()
+        const hourUTC = now.getUTCHours()
+        console.log("UTC", hourUTC, minUTC, secondsUTC)
+      }
+      setLocalTime()
+      setUTCTime()
       //Show the time
       function setDate() {
         const now = new Date()
@@ -68,7 +89,16 @@
         }
       }
 
+      // Change the time Zone
+      function toggleTimeZone () {
+        console.log("Time zone changed")
+        const zoneDisplay = document.getElementsByClassName("zone")
+        //TODO Not changing the text on page
+        zoneDisplay.textContent = "Local Time"
+      }
+
       sweepStyleBtn.addEventListener('click', toggleSecondHandSweep)
+      zoneBtn.addEventListener('click', toggleTimeZone)
     </script>
 </body>
 </html>
