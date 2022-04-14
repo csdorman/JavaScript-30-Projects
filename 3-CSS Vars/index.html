@@ -18,7 +18,23 @@
         <input type="color" id="base" name="base" value="#ffc600">
     </div>
 
+  <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500" alt="A pretty picture">
+
   <style>
+      /*Controls*/
+      :root {
+          --base: hsl(204, 81%, 84%);
+          --spacing: 10px;
+          --blur: 10px
+      }
+
+      img {
+          padding: var(--spacing);
+          background: var(--base);
+          filter: blur(var(--blur));
+      }
+
+      /*Default style*/
       body {
           text-align: center;
           background: #193549;
@@ -38,7 +54,18 @@
   </style>
 
   <script>
+    const inputs = document.querySelectorAll('.controls input');
 
+    function handleUpdate() {
+        const suffix = this.dataset.sizing || ''
+        document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix)
+        console.log(suffix, this.value)
+    }
+
+    // Listen for a change (when the mouse button is released
+    inputs.forEach(input => input.addEventListener('change', handleUpdate))
+    // Listen for any click and drag event on the slider
+    inputs.forEach(input => input.addEventListener('mousemove', handleUpdate))
   </script>
 </body>
 </html>
