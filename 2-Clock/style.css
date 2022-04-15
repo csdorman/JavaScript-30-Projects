@@ -1,5 +1,12 @@
+:root {
+    --light: #f2f4ff;
+    --dark: #6c756b;
+    --blue: #96c5f7;
+    --dark-blue: #023047;
+    --green: #93acb5;
+}
+
 html {
-    background: red;
     font-family: monospace;
     text-align: center;
     font-size: 12px;
@@ -11,6 +18,7 @@ body {
     flex: 1;
     min-height: 100vh;
     align-items: center;
+    background: var(--dark)
 }
 
 .clock {
@@ -18,6 +26,9 @@ body {
     height: 30rem;
     border: 10px solid white;
     border-radius: 50%;
+    box-shadow: 2px 2px 2px black;
+    margin: auto;
+    background: var(--light);
 }
 
 .clock-face {
@@ -29,7 +40,7 @@ body {
 .hand {
     width: 50%;
     height: 6px;
-    background: black;
+    background: var(--blue);
     position: absolute;
     top: 50%;
     transform-origin: 100%;
@@ -51,13 +62,13 @@ body {
 }
 
 .hour-hand {
-    background-color: black;
     width: 35%;
     left: 15%;
 }
 
 .h12 {
     font-size: 2rem;
+    color: var(--dark-blue);
 }
 
 .h3 {
@@ -65,12 +76,14 @@ body {
     top: 41%;
     left: 47%;
     font-size: 2rem;
+    color: var(--dark-blue);
   }
 
 .h6 {
     position: relative;
     top: 76%;
     font-size: 2rem;
+    color: var(--dark-blue);
   }
 
 .h9 {
@@ -78,13 +91,20 @@ body {
     top: 22%;
     right: 46%;
     font-size: 2rem;
+    color: var(--dark-blue);
   }
 
 button {
     margin-top: 20px;
     padding: 5px;
     width: 10rem;
-    border: 5px solid darkgrey;
+    background: var(--light);
+    border: 5px solid var(--green);
     border-radius: 10px;
     box-shadow: 2px 2px 3px black;
+    color: var(--dark-blue);
+}
+
+.zone {
+    padding-top: 10px;
 }
