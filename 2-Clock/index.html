@@ -90,15 +90,26 @@
       }
 
       // Change the time Zone
+      let utcZone = false
       function toggleTimeZone () {
         console.log("Time zone changed")
-        const zoneDisplay = document.getElementsByClassName("zone")
+        let zoneDisplay = document.getElementsByClassName('current-zone')
+        let zoneDisplayText = "";
         //TODO Not changing the text on page
-        zoneDisplay.textContent = "Local Time"
+        if (!utcZone) {
+          utcZone = true
+          zoneDisplayText = "UTC Time"
+        } else {
+          utcZone = false
+          zoneDisplayText = "Local Time"
+        }
+        console.log(utcZone)
+        console.log(zoneDisplay)
+        document.getElementsByClassName('.current-zone').innerHTML = zoneDisplayText
+        sweepStyleBtn.addEventListener('click', toggleSecondHandSweep)
+        zoneBtn.addEventListener('click', toggleTimeZone)
       }
 
-      sweepStyleBtn.addEventListener('click', toggleSecondHandSweep)
-      zoneBtn.addEventListener('click', toggleTimeZone)
     </script>
 </body>
 </html>
