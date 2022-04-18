@@ -18,9 +18,9 @@
       <div class="hand second-hand tick"></div>
     </div>
     <div class="buttons">
-      <button class="sweep-style tick" id="sweep-style">Tick/Sweep Toggle</button>
-      <button class="time-zone">UTC/Local Time</button>
-      <div class="" id="time-zone">Time Zone: <span class="current-zone"></span></div>
+      <button class="tick" id="sweep-style">Tick/Sweep Toggle</button>
+      <button class="local" id="time-zone">UTC/Local Time</button>
+      <div class=''>Time Zone: <span class="current-zone">Default</span></div>
     </div>
   </div>
 
@@ -32,33 +32,27 @@
       const hourHand = document.querySelector('.hour-hand')
       const sweepStyleBtn = document.querySelector('#sweep-style')
       const zoneBtn = document.querySelector('#time-zone')
+      const zoneDisplay = document.querySelector('.current-zone')
       const allHands = document.querySelectorAll('.hand')
 
+      // Get current time (local or UTC)
+      function setTime() {
+        const now = new Date()
+        if(zoneBtn.classList.contains("local")) {
+          const seconds  = now.getSeconds()
+          const min = now.getMinutes()
+          const hour = now.getHours()
+          showTime(hour, min, seconds)
+        } else {
+          const seconds = now.getUTCSeconds()
+          const min = now.getUTCMinutes()
+          const hour = now.getUTCHours()
+          showTime(hour, min, seconds)
+        }
+      }
 
-      // Get local time
-      function setLocalTime() {
-        const now = new Date()
-        const seconds  = now.getSeconds()
-        const min = now.getMinutes()
-        const hour = now.getHours()
-        console.log("Local", now)
-      }
-      // Get UTC time
-      function setUTCTime() {
-        const now = new Date()
-        const secondsUTC = now.getUTCSeconds()
-        const minUTC = now.getUTCMinutes()
-        const hourUTC = now.getUTCHours()
-        console.log("UTC", hourUTC, minUTC, secondsUTC)
-      }
-      setLocalTime()
-      setUTCTime()
-      //Show the time
-      function setDate() {
-        const now = new Date()
-        const seconds  = now.getSeconds()
-        const min = now.getMinutes()
-        const hour = now.getHours()
+      // Show the correct time (local or UTC)
+      function showTime(hour, min, seconds){
         const secDegrees = ((seconds / 60) * 360) + 90
         const minDegrees = ((min / 60) * 360) + 90
         const hourDegrees = ((hour / 12 * 360) + 90)
@@ -66,7 +60,9 @@
         minuteHand.style = `transform: rotate(${minDegrees}deg)`
         hourHand.style  = `transform: rotate(${hourDegrees}deg)`
       }
-      setInterval(setDate, 1000)
+
+      // Run the function
+      setInterval(setTime, 1000)
 
       //Change style of sweep hand
       function setSweepClasses() {
@@ -90,20 +86,19 @@
       }
 
       // Change the time Zone
-      let utcZone = false
       function toggleTimeZone () {
         console.log("Time zone changed")
         let zoneDisplay = document.getElementsByClassName('current-zone')
         let zoneDisplayText = "";
-        //TODO Not changing the text on page
-        if (!utcZone) {
-          utcZone = true
-          zoneDisplayText = "UTC Time"
+        if(zoneBtn.classList.contains("local")) {
+          zoneBtn.classList.remove("local")
+          zoneBtn.classList.add("utc")
+          //TODO: Change Time Zone Display
         } else {
-          utcZone = false
-          zoneDisplayText = "Local Time"
+          zoneBtn.classList.remove("utc")
+          zoneBtn.classList.add("local")
+          //TODO: Change Time Zone Display
         }
-        console.log(utcZone)
         console.log(zoneDisplay)
         document.getElementsByClassName('.current-zone').innerHTML = zoneDisplayText
       }
