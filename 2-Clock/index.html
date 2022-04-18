@@ -18,9 +18,9 @@
       <div class="hand second-hand tick"></div>
     </div>
     <div class="buttons">
-      <button class="sweep-style tick">Tick/Sweep Toggle</button>
+      <button class="sweep-style tick" id="sweep-style">Tick/Sweep Toggle</button>
       <button class="time-zone">UTC/Local Time</button>
-      <div class="zone">Time Zone: <span class="current-zone"></span></div>
+      <div class="" id="time-zone">Time Zone: <span class="current-zone"></span></div>
     </div>
   </div>
 
@@ -30,8 +30,8 @@
       const secondHand = document.querySelector('.second-hand')
       const minuteHand = document.querySelector('.min-hand')
       const hourHand = document.querySelector('.hour-hand')
-      const sweepStyleBtn = document.querySelector('.sweep-style')
-      const zoneBtn = document.querySelector('.time-zone')
+      const sweepStyleBtn = document.querySelector('#sweep-style')
+      const zoneBtn = document.querySelector('#time-zone')
       const allHands = document.querySelectorAll('.hand')
 
 
@@ -106,9 +106,10 @@
         console.log(utcZone)
         console.log(zoneDisplay)
         document.getElementsByClassName('.current-zone').innerHTML = zoneDisplayText
-        sweepStyleBtn.addEventListener('click', toggleSecondHandSweep)
-        zoneBtn.addEventListener('click', toggleTimeZone)
       }
+
+      sweepStyleBtn.addEventListener('click', toggleSecondHandSweep)
+      zoneBtn.addEventListener('click', toggleTimeZone)
 
     </script>
 </body>

@@ -105,6 +105,13 @@ button {
     color: var(--dark-blue);
 }
 
+button:active {
+    transform: scale(.9);
+    box-shadow: 4px 4px 12px black;
+    background-color:var(--dark);
+    color: var(--light);
+}
+
 .zone {
     padding-top: 10px;
 }
