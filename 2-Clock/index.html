@@ -6,7 +6,9 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+  <div class="header">
+    <h1>JavaScript30 Clock</h1>
+  </div>
   <div class="clock">
     <div class="clock-face">
       <div class="h12">12</div>
@@ -20,12 +22,11 @@
     <div class="buttons">
       <button class="tick" id="sweep-style">Tick/Sweep Toggle</button>
       <button class="local" id="time-zone">UTC/Local Time</button>
-      <div class=''>Time Zone: <span class="current-zone">Default</span></div>
+      <div class='zone'>Time Zone: <span class="current-zone">Local Time</span></div>
     </div>
   </div>
 
     <script>
-      //TODO Add functionality to adjust time zone (Toggle between local and UTC)
 
       const secondHand = document.querySelector('.second-hand')
       const minuteHand = document.querySelector('.min-hand')
@@ -51,7 +52,7 @@
         }
       }
 
-      // Show the correct time (local or UTC)
+      // Show the selected time (local or UTC)
       function showTime(hour, min, seconds){
         const secDegrees = ((seconds / 60) * 360) + 90
         const minDegrees = ((min / 60) * 360) + 90
@@ -61,7 +62,7 @@
         hourHand.style  = `transform: rotate(${hourDegrees}deg)`
       }
 
-      // Run the function
+      // Run the timekeeping function
       setInterval(setTime, 1000)
 
       //Change style of sweep hand
@@ -88,19 +89,18 @@
       // Change the time Zone
       function toggleTimeZone () {
         console.log("Time zone changed")
-        let zoneDisplay = document.getElementsByClassName('current-zone')
-        let zoneDisplayText = "";
+        const utcTime = "UTC Time"
+        const localTime = "Local Time"
         if(zoneBtn.classList.contains("local")) {
           zoneBtn.classList.remove("local")
           zoneBtn.classList.add("utc")
-          //TODO: Change Time Zone Display
+          console.log(zoneDisplay)
+          zoneDisplay.textContent = utcTime
         } else {
           zoneBtn.classList.remove("utc")
           zoneBtn.classList.add("local")
-          //TODO: Change Time Zone Display
+          zoneDisplay.textContent = localTime
         }
-        console.log(zoneDisplay)
-        document.getElementsByClassName('.current-zone').innerHTML = zoneDisplayText
       }
 
       sweepStyleBtn.addEventListener('click', toggleSecondHandSweep)

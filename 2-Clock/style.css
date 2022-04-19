@@ -9,18 +9,20 @@
 html {
     font-family: monospace;
     text-align: center;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 body {
     margin: 0;
-    display: flex;
     flex: 1;
     min-height: 100vh;
     align-items: center;
     background: var(--dark)
 }
 
+.header {
+    min-height: 5rem;
+}
 .clock {
     width: 30rem;
     height: 30rem;
@@ -113,5 +115,6 @@ button:active {
 }
 
 .zone {
-    padding-top: 10px;
+    padding-top: 2rem;
+    font-size: 1.8rem;
 }
