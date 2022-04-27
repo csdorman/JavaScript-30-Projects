@@ -57,12 +57,21 @@
             let inventorAge = currentValue.passed - currentValue.year
             return prevValue + inventorAge
         }, 0)
-        console.log ("Total years lived is", totalYearsLived)
+        console.table ("Total years lived is", totalYearsLived)
 
         // 5. Sort the inventors by years lived
+        const ageLived = inventors.sort(function (a, b){
+            let ageA = a.passed - a.year
+            let ageB = b.passed - b.year
+            return ageB - ageA
+        })
+        console.table("Sorted by years alive", ageLived)
 
         // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
         // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+        const category = document.querySelector('.mw-category')
+        const links = category.querySelectorAll('a')
+        //TODO Map over links to get text and search for "de"
 
 
         // 7. sort Exercise
