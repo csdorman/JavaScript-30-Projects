@@ -57,7 +57,7 @@
             let inventorAge = currentValue.passed - currentValue.year
             return prevValue + inventorAge
         }, 0)
-        console.table ("Total years lived is", totalYearsLived)
+        console.log("Total years lived is", totalYearsLived)
 
         // 5. Sort the inventors by years lived
         const ageLived = inventors.sort(function (a, b){
@@ -65,7 +65,7 @@
             let ageB = b.passed - b.year
             return ageB - ageA
         })
-        console.table("Sorted by years alive", ageLived)
+        console.log("Sorted by years alive", ageLived)
 
         // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
         // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
@@ -92,6 +92,14 @@
         // 8. Reduce Exercise
         // Sum up the instances of each of these
         const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+        const countedData = data.reduce(function(allItems, currentItem) {
+            if(!allItems[currentItem]) {
+                allItems[currentItem] = 0
+            }
+            allItems[currentItem]++
+            return allItems
+        }, {})
+        console.log("Counted transpo items", countedData)
     </script>
 </body>
 </html>
