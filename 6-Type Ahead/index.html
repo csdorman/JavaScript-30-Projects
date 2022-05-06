@@ -17,6 +17,34 @@
 
   <script>
     const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json'
+
+    const cities = []
+
+    //Using browser API fetch()
+    fetch(endpoint)
+        //Then convert the data in JSON
+        .then(blob => blob.json())
+        //Then push the JSON into cities, and use spread to keep it the "top level" in the array
+        .then(data => cities.push(...data))
+
+
+
+    function findMatches(wordToMatch, cities) {
+        return cities.filter(place => {
+            //You must define the regex instead of just using a variable
+            const regex = new RegExp(wordToMatch, 'gi') //g= Global, i= case insensitive
+            return place.city.match(regex) || place.state.match(regex) //Match (and return) either city OR state
+        })
+    }
+
+    function displayMatches() {
+        console.log(this.value)
+    }
+
+    const searchInput = document.querySelector('.search')
+    const suggestions = document.querySelector('.suggestions')
+
+    searchInput.addEventListener('change', findMatches)
   </script>
 </body>
 </html>
