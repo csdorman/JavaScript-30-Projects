@@ -37,14 +37,40 @@
         })
     }
 
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    }
+
     function displayMatches() {
-        console.log(this.value)
+        //Send typed text to findMatches function
+        const matchArray = findMatches(this.value, cities)
+        console.log(matchArray)
+        //Create html for a single returned place
+        const html = matchArray.map(place => {
+            const regex = new RegExp(this.value, 'gi')
+            const cityName = place.city.replace(regex, `<span class="hl">${this.value}</span>`)
+            const stateName = place.state.replace(regex, `<span class="hl">${this.value}</span>`)
+            return `
+                <li>
+                    <span class="name">${cityName}, ${stateName}</span>
+                    <span class="population">${numberWithCommas(place.population)}</span>
+                </li>`
+        }).join('')
+        //Put HTML in suggestions <ul>
+        suggestions.innerHTML = html
     }
 
     const searchInput = document.querySelector('.search')
     const suggestions = document.querySelector('.suggestions')
 
-    searchInput.addEventListener('change', findMatches)
+    //Change event only fires when you click away from the input box
+    searchInput.addEventListener('change',
+        displayMatches)
+
+    //Use keyup to trigger on every keypress
+    searchInput.addEventListener('keyup',
+        displayMatches)
+
   </script>
 </body>
 </html>
