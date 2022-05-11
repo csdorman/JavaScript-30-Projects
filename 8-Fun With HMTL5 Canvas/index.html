@@ -8,6 +8,48 @@
   <canvas id="draw" width="800" height="800"></canvas>
 
   <script>
+      const canvas = document.querySelector('#draw')
+      const ctx = canvas.getContext('2d')
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
+
+      ctx.strokeStyle = '#AWESOME'
+      ctx.lineJoin = 'round'
+      ctx.lineCap = 'round'
+      ctx.lineWidth = 60
+
+      // Default too false to enable drawing on mouse click
+      let isDrawing = false
+
+      // Variables for line stop
+      let lastX = 0
+      let lastY = 0
+
+      function draw(e) {
+          //Stop drawing when mouse button is up
+          if(!isDrawing) return
+          console.log(e)
+          ctx.beginPath()
+          ctx.moveTo(lastX, lastY)
+          ctx.lineTo(e.offsetX, e.offsetY)
+          ctx.stroke()
+          lastX = e.offsetX
+          lastY = e.offsetY
+      }
+
+      canvas.addEventListener('mousemove', draw)
+
+      // Enable drawing mode when mouse btn is down. Pass the new pass coordinates
+      canvas.addEventListener('mousedown', (e) => {
+          isDrawing = true
+          lastX = e.offsetX
+          lastY = e.offsetY
+      })
+
+      // Disable drawing when mouse btn is up (or moves off canvas)
+      canvas.addEventListener('mouseup', () => isDrawing = false)
+      canvas.addEventListener('mouseout', () => isDrawing = false)
+
   </script>
 
   <style>
