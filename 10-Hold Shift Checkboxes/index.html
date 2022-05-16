@@ -94,6 +94,19 @@ When a user clicks a checkbox, holds Shift, and then clicks another checkbox a f
 </div>
 
 <script>
+  const listItem = document.querySelectorAll(".item")
+  const listItemCheckbox =  Array.from(document.querySelectorAll("input"))
+  const checkedItem = function (e){
+    // Get array index position
+    console.log("Checkbox clicked", e)
+  }
+
+
+  listItemCheckbox.forEach(checkbox => checkbox.addEventListener('input', checkedItem))
+
+  console.log(listItem)
+  console.log(listItemCheckbox)
+
 </script>
 </body>
 </html>
