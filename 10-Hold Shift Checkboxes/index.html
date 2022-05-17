@@ -94,18 +94,42 @@ When a user clicks a checkbox, holds Shift, and then clicks another checkbox a f
 </div>
 
 <script>
-  const listItem = document.querySelectorAll(".item")
-  const listItemCheckbox =  Array.from(document.querySelectorAll("input"))
-  const checkedItem = function (e){
-    // Get array index position
-    console.log("Checkbox clicked", e)
+  // // const listItem = document.querySelectorAll(".item")
+  // // const listItemCheckbox =  Array.from(document.querySelectorAll("input"))
+  // // const checkedItem = function (e){
+  // //   // Get array index position
+  // //   let arrayPosit =
+  // //   console.log("Checkbox clicked", arrayPosit, e)
+  // }
+  // listItemCheckbox.forEach(checkbox => checkbox.addEventListener('input', checkedItem))
+  //
+  // console.log(listItem)
+  // console.log(listItemCheckbox)
+
+  let lastChecked
+  function handleCheck(e) {
+    // See if we are between checked items
+    let inBetween = false
+    // Check if shift key is down
+    // And that they are checking the box
+    if(e.shiftKey && this.checked) {
+      //loop over every checkbox
+      checkboxes.forEach(checkbox => {
+        console.log(checkbox)
+        if(checkbox === this || checkbox === lastChecked) {
+          inBetween = !inBetween
+        }
+        if(inBetween) {
+          checkbox.checked = true
+        }
+      })
+
+    }
+
+    lastChecked = this
   }
-
-
-  listItemCheckbox.forEach(checkbox => checkbox.addEventListener('input', checkedItem))
-
-  console.log(listItem)
-  console.log(listItemCheckbox)
+  const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]')
+  checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck))
 
 </script>
 </body>
