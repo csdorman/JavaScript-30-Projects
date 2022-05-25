@@ -2,9 +2,50 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>JS Reference vs. <Copying> </Copying></title>
+    <title>JS Reference vs. Copying</title>
   </head>
   <body>
+    
+    
+    <script>
+    
+    // strings, numbers and booleans
+    let age = 100
+    let age2 = age
+    console.log(age, age2) // 100 100
+    age = 200
+    // Note that changing the value of 'age' does NOT change the value of 'age2'. The variables are only written when initially set.
+    console.log(age, age2) // 200 100
+    
+    // Arrays
+    const players = ['Colin', 'Jessica', 'Luke', 'Cat']
+    const team = players 
+    console.log(players, team) // ['Colin', 'Jessica', 'Luke', 'Cat'] x2
+    team[3] = 'Dog'
+    // Note that changing *any* element of the array always propogates backwards. This is because 'team' is just a reference to players, and changing the reference changes everything.
+    console.log(players) // ['Colin', 'Jessica', 'Luke', 'Dog'] 
+    
+    // So, make sure to copy the array using any of these methods
+    // After copying you can use the team[3] = 'Dog' without changing the original 
+    const team2 = players.slice()
+    const team3 = [].concat(players)
+    const team4 = [...players]
+    
+    // Objects
+    
+    const person = {
+      name: 'Colin Dorman',
+      age: 40
+    }
+    const captain = person
+    // This will change the age prop on *both* captain and person.
+    captain.age = 41
+    console.log(captain, person)
+    // Make a copy instead. This also lets you add new properties.
+    const captain2 = Object.assign({}, person, { age: 99, interests: 'sleep'})
+    console.log(person, captain2)
+      
+    </script>
     
   </body>
 </html>
