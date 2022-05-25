@@ -24,6 +24,41 @@
 	   const addItems = document.querySelector('.add-items')
 	   const itemsList = document.querySelector('.plates')
 	   const items = []
+
+
+		function addItem(e) {
+			// Use preventDefault to keep the page from reloading (and do things client-side)
+			e.preventDefault()
+			const text = (this.querySelector('[name=item]')).value
+			const item = {
+				text,
+				done: false
+			}
+			items.push(item)
+			populateList(items, itemsList)
+			console.log('Item', item)
+			console.log('ItemList', itemsList)
+			this.reset()
+			
+		}
+		
+		function populateList(plates = [], platesList) {
+			platesList.innerHTML = plates.map((plate, i) => {
+				return `
+				<li>
+					<input type="checkbox" data-index=${i} id="item${i}" ${plate.done ? 'checked' : ''} /> 
+					<label for="">${plate.text}</label>
+				</li>
+				`
+			}).join('')
+		}
+		
+	   // Listen for 'submit' instead of 'click' to make sure not to miss an event
+	   addItems.addEventListener('submit', addItem)
+	   
+
+	   
+	   
    </script>
 </body>
 </html>
