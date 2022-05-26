@@ -75,18 +75,30 @@
         platesList.innerHTML = plates
           .map((plate, i) => {
             return `
-      			<li>
-      				<input type="checkbox" data-index=${i} id="item${i}" ${
+          			<li>
+          				<input type="checkbox" data-index=${i} id="item${i}" ${
               plate.done ? "checked" : ""
             } />
-      				<label for="item${i}">${plate.text}</label>
-      			</li>
-      `;
+          				<label for="item${i}">${plate.text}</label>
+          			</li>
+          `;
           })
           .join("");
       }
 
-      //TODO: Checkboxes are not showing as "checked"
+      // Store the state of each items toggle
+      // Using event delegation to listen for click on parent item and pass it on to <li> children
+      function toggleDone(e) {
+        // If you don't click on an input, exit out
+        if (!e.target.matches("input")) return;
+        const el = e.target;
+        const index = el.dataset.index;
+        items[index].done = !items[index].done;
+        localStorage.setItem("items", JSON.stringify(items));
+      }
+
+      // Event listen on itemsList parent
+      itemsList.addEventListener("click", toggleDone);
 
       // Listen for 'submit' instead of 'click' to make sure not to miss an event
       addItems.addEventListener("submit", addItem);
