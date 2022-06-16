@@ -1,0 +1,11 @@
+# All media files
+/1-DrumKit/sounds/*
+*.mp4
+
+# All DS_Store files
+**/.DS_Store
+.DS_Store
+
+# Misc folders and files
+.idea
+.nova
