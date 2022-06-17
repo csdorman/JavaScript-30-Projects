@@ -47,12 +47,14 @@
         <input type="submit" value="+ Add Item" />
       </form>
       <button class="clear-all">Clear All</button>
+      <button class="select-all">Select/Unselect All</button>
     </div>
 
     <script>
       const addItems = document.querySelector(".add-items");
       const itemsList = document.querySelector(".plates");
       const clearBtn = document.querySelector(".clear-all")
+      const selectAllBtn = document.querySelector(".select-all")
       // Look for existing items in local storage, or create a blank array
       const items = JSON.parse(localStorage.getItem("items")) || [];
 
