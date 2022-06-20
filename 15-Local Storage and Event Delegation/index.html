@@ -107,8 +107,18 @@
         populateList(items, itemsList)
       }
       
+      function selectAll() {
+        const isChecked = (value) => value == false
+        console.log(items)
+        console.log(items.keys)
+        console.log(Object.keys(items), Object.values(items), Object.is(items))
+      }
+      
 
       // TODO: Create "Check/Uncheck All" button
+      
+      // Event listen on select all button 
+      selectAllBtn.addEventListener("click", selectAll)
       
       // Event listen on clear button
       clearBtn.addEventListener("click", clearAll)
