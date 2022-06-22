@@ -108,9 +108,6 @@
 			}
 
 			function selectAll() {
-				//console.log(items);
-				//console.log(items.keys);
-				//console.log(Object.keys(items), Object.values(items), Object.is(items));
 				if (items.every((item) => item.done == true)) {
 					console.log("If", items);
 					items.forEach((item) => (item.done = false));
@@ -120,8 +117,6 @@
 				}
 				populateList(items, itemsList);
 			}
-
-			// TODO: Create "Check/Uncheck All" button
 
 			// Event listen on select all button
 			selectAllBtn.addEventListener("click", selectAll);
