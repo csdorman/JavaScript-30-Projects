@@ -1,6 +1,7 @@
 # All media files
 /1-DrumKit/sounds/*
 *.mp4
+*.mp3
 
 # All DS_Store files
 **/.DS_Store
