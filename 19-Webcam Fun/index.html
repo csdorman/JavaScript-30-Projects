@@ -9,7 +9,45 @@
 	<div class='photobooth'>
 		<div class='controls'>
 			<button onClick='takePhoto()'>Take Photo</button>
-			
+				<div class="rgb">
+		        	<label for="rmin">Red Min:</label>
+        			<input type="range" min=0 max=255 name="rmin">
+					<label for="rmax">Red Max:</label>
+					<input type="range" min=0 max=255 name="rmax">
+					<br>
+					<label for="gmin">Green Min:</label>
+					<input type="range" min=0 max=255 name="gmin">
+					<label for="gmax">Green Max:</label>
+					<input type="range" min=0 max=255 name="gmax">
+					<br>
+					<label for="bmin">Blue Min:</label>
+					<input type="range" min=0 max=255 name="bmin">
+					<label for="bmax">Blue Max:</label>
+					<input type="range" min=0 max=255 name="bmax">
+				</div>
+			<fieldset>
+				<legend>Select filter</legend>
+				<div>
+					<input type="radio" id="none" name="filter">
+					<label for="none">No filter</label>
+				</div>
+				<div>
+					<input type="radio" id="red-effect" name="filter">
+					<label for="red-effect">Red filter</label>
+				</div>
+				<div>
+					<input type="radio" id="rgb-split" name="filter">
+					<label for="rgb-split">RGB Split</label>
+				</div>
+				<div>
+					<input type="radio" name="filter" id="green-screen">
+					<label for="green-screen">Green Screen</label>
+				</div>
+			</fieldset>
+
+			<!--
+			TODO: Add styling for controls
+			TODO: Hook filter radio btn to filter functionality-->
 		</div>
 		
 		<canvas class='photo'></canvas>
@@ -17,7 +55,7 @@
 		<div class='strip'></div>
 	</div>
 	
-	<audio src='.'/snap.mp3' class='snap' hidden></audio>
+	<audio src='./19%20-%20Webcam%20Fun_snap.mp3' class='snap' hidden></audio>
 	
 	<script src='script.js'></script>
 </body>
