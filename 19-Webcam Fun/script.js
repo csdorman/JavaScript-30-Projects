@@ -3,6 +3,8 @@ const canvas = document.querySelector('.photo')
 const ctx = canvas.getContext('2d')
 const strip = document.querySelector('.strip')
 const snap = document.querySelector('.snap')
+const appliedFilter = document.querySelector('form')
+const filterSelected = document.querySelector('.selected-filter')
 
 function getVideo() {
     navigator.mediaDevices.getUserMedia({video: true, audio: false})
@@ -28,13 +30,29 @@ function paintToCanvas() {
         // take out pixels
         let pixels = ctx.getImageData(0, 0, height, width)
         // jack them up
-        // pixels = redEffect(pixels)
-        // pixels = rgbSplit(pixels)
-        // ctx.globalAlpha = 0.1
-        pixels = greenScreen(pixels)
+        if (window.filterToApply === "red-effect") {
+            pixels = redEffect(pixels)
+        } else if (window.filterToApply === "rgb-split") {
+            pixels = rgbSplit(pixels)
+            ctx.globalAlpha = 0.1
+        } else if (window.filterToApply === "green-screen") {
+            pixels = greenScreen(pixels)
+        } else {
+            ctx.globalAlpha = 1
+        }
         // put them back
         ctx.putImageData(pixels, 0, 0)
     }, 50)
+}
+
+function selectFilter(e) {
+    e.preventDefault()
+    for (i=0; i < appliedFilter.length; i++) {
+        if(appliedFilter[i].checked) {
+            filterSelected.innerHTML = "Filter: "+appliedFilter[i].value
+            window.filterToApply = appliedFilter[i].value
+        }
+    }
 }
 
 function takePhoto() {
@@ -90,9 +108,9 @@ function greenScreen(pixels) {
             pixels.data[i + 3] = 0
         }
     }
-
     return pixels
 }
 
 getVideo()
 video.addEventListener('canplay', paintToCanvas)
+appliedFilter.addEventListener('submit', selectFilter)

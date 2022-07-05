@@ -25,29 +25,35 @@
 					<label for="bmax">Blue Max:</label>
 					<input type="range" min=0 max=255 name="bmax">
 				</div>
-			<fieldset>
-				<legend>Select filter</legend>
-				<div>
-					<input type="radio" id="none" name="filter">
-					<label for="none">No filter</label>
-				</div>
-				<div>
-					<input type="radio" id="red-effect" name="filter">
-					<label for="red-effect">Red filter</label>
-				</div>
-				<div>
-					<input type="radio" id="rgb-split" name="filter">
-					<label for="rgb-split">RGB Split</label>
-				</div>
-				<div>
-					<input type="radio" name="filter" id="green-screen">
-					<label for="green-screen">Green Screen</label>
-				</div>
-			</fieldset>
+			<form>
+				<fieldset class="filter-select">
+					<legend>Select filter</legend>
+					<div>
+						<input type="radio" id="none" value="none" name="filter" checked>
+						<label for="none">No filter</label>
+					</div>
+					<div>
+						<input type="radio" id="red-effect" value="red-effect" name="filter">
+						<label for="red-effect">Red filter</label>
+					</div>
+					<div>
+						<input type="radio" id="rgb-split" value="rgb-split" name="filter">
+						<label for="rgb-split">RGB Split</label>
+					</div>
+					<div>
+						<input type="radio" name="filter" value="green-screen" id="green-screen">
+						<label for="green-screen">Green Screen (Use sliders)</label>
+					</div>
+					<div>
+						<button type="submit">Apply Filter</button>
+					</div>
+					<div class="selected-filter"></div>
+				</fieldset>
+			</form>
 
 			<!--
 			TODO: Add styling for controls
-			TODO: Hook filter radio btn to filter functionality-->
+			-->
 		</div>
 		
 		<canvas class='photo'></canvas>
