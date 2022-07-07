@@ -31,10 +31,9 @@ html {
 }
 
 .player {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width:200px;
+  width: 100%;
+  padding: 10px;
+  border-radius: 15px;
 }
 
 /*
@@ -61,4 +60,24 @@ html {
 
 .controls {
   display: grid;
+  grid-column: 3;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 150px 100px;
+}
+
+.rgb > label {
+  display: grid;
+}
+
+.filter-select {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  display: grid;
+  justify-content: space-around;
+}
+
+.shutter-btn {
+  grid-column: 1 / 2;
+  grid-row: 2 / -1;
+  margin: 0 10px 10px 10px;
 }

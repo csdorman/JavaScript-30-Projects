@@ -28,7 +28,7 @@ function paintToCanvas() {
     return setInterval(() => {
         ctx.drawImage(video, 0, 0, width, height)
         // take out pixels
-        let pixels = ctx.getImageData(0, 0, height, width)
+        let pixels = ctx.getImageData(0, 0, width, height)
         // jack them up
         if (window.filterToApply === "red-effect") {
             pixels = redEffect(pixels)
@@ -41,7 +41,7 @@ function paintToCanvas() {
             ctx.globalAlpha = 1
         }
         // put them back
-        ctx.putImageData(pixels, 0, 0)
+        ctx.putImageData(pixels, 0, 0,)
     }, 50)
 }
 
