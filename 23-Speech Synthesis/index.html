@@ -33,56 +33,58 @@
 		</div>
 
 		<script>
-
-			// TODO: fix functionality
 			// TODO: fix layout
 
-				const msg = new SpeechSynthesisUtterance();
-				let voices = [];
-				const voicesDropdown = document.querySelector('[name="voice"]');
-				const options = document.querySelectorAll(
-					'[type="range"], [name="text"]'
-				);
-				const speakButton = document.querySelector("#speak");
-				const stopButton = document.querySelector("#stop");
+			const msg = new SpeechSynthesisUtterance();
+			let voices = [];
+			const voicesDropdown = document.querySelector('[name="voice"]');
+			const options = document.querySelectorAll(
+				'[type="range"], [name="text"]'
+			);
+			const speakButton = document.querySelector(".speak");
+			const stopButton = document.querySelector(".stop");
 
-				msg.text = document.querySelector('[name="text"]').value;
+			msg.text = document.querySelector('[name="text"]').value;
 
-				function populateVoices() {
-					voices = this.getVoices();
-					voicesDropdown.innerHTML = voices
+			function populateVoices() {
+				voices = this.getVoices();
+				voicesDropdown.innerHTML = voices
 
-						.map(
-							(voice) =>
-								`<option value="${voice.name}">${voice.name} (${voice.lang})</option>`
-						)
-						.join("");
+					.map(
+						(voice) =>
+							`<option value="${voice.name}">${voice.name} (${voice.lang})</option>`
+					)
+					.join("");
+			}
+
+			function setVoice() {
+				console.log("Changing voice");
+				msg.voice = voices.find((voice) => voice.name === this.value);
+			}
+
+			// Stop and restart speaking when a new voice is selected.
+			function toggle(startOver = true) {
+				speechSynthesis.cancel();
+				if (startOver) {
+					speechSynthesis.speak(msg);
 				}
+			}
 
-				function setVoice() {
-					console.log("Changing voice");
-					msg.voice = voices.find((voice) => voice.name === this.value);
-				}
+			function setOption() {
+				console.log(this.name, this.value);
+				msg[this.name] = this.value;
+				toggle();
+			}
+			console.log(options);
 
-				// Stop and restart speaking when a new voice is selected.
-				function toggle(startOver = true) {
-					speechSynthesis.cancel();
-					if (startOver) {
-						speechSynthesis.speak(msg);
-					}
-				}
+			speakButton.addEventListener("click", toggle);
 
-				function setOption() {
-					console.log(this.name, this.value);
-					msg[this.name] = this.value
-					toggle()
-				}
-
-				speechSynthesis.addEventListener("voiceschanged", populateVoices);
-				voicesDropdown.addEventListener("change", setVoice);
-				options.forEach(option => option.addEventListener('change', setOption)
-				speakButton.addEventListener('click', toggle)
-				stopButton.addEventListener('click', () => toggle(false))
+			speechSynthesis.addEventListener("voiceschanged", populateVoices);
+			voicesDropdown.addEventListener("change", setVoice);
+			options.forEach((option) =>
+				option.addEventListener("change", setOption)
+			);
+			stopButton.addEventListener("click", () => toggle(false));
 		</script>
 	</body>
 </html>
