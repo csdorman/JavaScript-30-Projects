@@ -1,0 +1,58 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Events - Capture, Propogation, Bubbling, and Once</title>
+	</head>
+	<body>
+		<div class="one">
+			<div class="two">
+				<div class="three">
+					
+				</div>
+			</div>
+		</div>
+
+		<style>
+			html {
+				box-sizing: border-box;
+				}
+				
+				*, *:before, *:after { 
+				box-sizing: inherit; 
+				}
+			
+			div {
+				width: 100%;
+				padding: 100px;
+				}
+			
+			.one {
+				background: thistle;
+				}
+			
+			.two {
+				background: mistyrose;
+				}
+			
+			.three {
+				background: coral;
+				}
+			</style>
+			
+			<button></button>
+			
+			<script>
+			const divs = document.querySelectorAll('div')	
+			
+			function logText(e) {
+				console.log(this.classList.value)
+				e.stopPropagation() // stop bubbling - only get the first element
+			}
+			
+			divs.forEach(div => div.addEventListener('click', logText))
+				capture: false // if true, starts at the top-level element. Defaults to false
+				once: true // if true, will listen for a click and then unbind itself.
+			</script>
+		</body>
+	</body>
+</html>
