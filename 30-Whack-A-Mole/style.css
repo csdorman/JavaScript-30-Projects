@@ -23,6 +23,26 @@ h1 {
 	margin-bottom: 0;
 }
 
+.controls {
+	display: flex;
+	align-content: space-around;
+}
+
+.start {
+	background: rgba(255, 255, 255, 0.2);
+	padding: 3rem 4rem;
+	line-height: 2;
+	font-size: 2rem;
+	font-family: monospace;
+	font-size: 2rem;
+	text-align: center;
+}
+
+.timer {
+	font-size: 4rem;
+	text-align: center;
+}
+
 .score {
 	background: rgba(255, 255, 255, 0.2);
 	padding: 0 3rem;

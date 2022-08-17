@@ -9,6 +9,14 @@
 		<h1>Whack-A-Mole! <span class="score">0</span></h1>
 		<div class="controls">
 			<button class="start" onClick="startGame()">Start!</button>
+			<button class="stop" onClick="stopGame()">Stop Game</button>
+			<div class="timer-lengths">
+				<button data-time="5" class="timer-btn">5 Seconds</button>
+				<button data-time="10" class="timer-btn">10 Seconds</button>
+				<button data-time="15" class="timer-btn">15 Seconds</button>
+				<button data-time="30" class="timer-btn">30 Seconds</button>
+				<button data-time="60" class="timer-btn">60 Seconds</button>
+			</div>
 			<p class="timer">
 				Time remaining: <span class="countdown-timer"></span>
 			</p>
@@ -36,16 +44,20 @@
 		</div>
 
 		<script>
+			// FIXME: Continuing countdown timer: https://developer.mozilla.org/en-US/docs/Web/API/setInterval
 			// TODO: Add visual countdown
 			// TODO Add selectable time limit
+			let countdown; //global variable for countdown
 
 			const holes = document.querySelectorAll(".hole");
 			const scoreBoard = document.querySelector(".score");
 			const moles = document.querySelectorAll(".mole");
+			const timerButtons = document.querySelectorAll(".timer-btn");
+			const timerDisplay = document.querySelector(".countdown-timer");
+
 			let timeUp = false;
 			let score = 0;
 			let lastHole;
-			let timerDisplay = document.querySelector(".countdown-timer");
 
 			function randomTime(min, max) {
 				return Math.round(Math.random() * (max - min) + min);
@@ -57,7 +69,6 @@
 				if (hole === lastHole) {
 					return randomHole(holes);
 				}
-
 				lastHole = hole;
 				return hole;
 			}
@@ -74,13 +85,19 @@
 			}
 
 			function startGame() {
+				clearInterval(); //clear any previously running timer
+				timerDisplay.textContent = ""; //clear any previous text content
+
 				scoreBoard.textContent = 0;
 				score = 0;
 				timeUp = false;
+				const seconds = parseInt(this.dataset.time);
 				peep();
-				countdownTimer();
+				countdownTimer(seconds);
 				//setTimeout(() => (timeUp = true), 10000);
 			}
+
+			function stopGame() {}
 
 			function bonk(e) {
 				if (!e.isTrusted) {
@@ -92,8 +109,9 @@
 				scoreBoard.textContent = score;
 			}
 
-			function countdownTimer() {
-				let seconds = 15; // hardcode in run time (for now)
+			function countdownTimer(seconds) {
+				clearInterval(seconds); //clear any running timers
+
 				let milliseconds = seconds * 1000;
 				timerDisplay.textContent = seconds;
 				setInterval(() => {
@@ -105,7 +123,7 @@
 						// check if time is up
 						timeUp = true; // if so, set timeUp to true
 						timerDisplay.textContent = "Game Over!";
-						clearInterval(seconds);
+						clearInterval(countdown);
 						return;
 					}
 				}, 1000);
@@ -115,6 +133,9 @@
 				timerDisplay.textContent = `${seconds} left!`;
 			}
 
+			timerButtons.forEach((button) =>
+				button.addEventListener("click", startGame)
+			);
 			moles.forEach((mole) => mole.addEventListener("click", bonk));
 		</script>
 	</body>
