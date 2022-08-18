@@ -44,9 +44,9 @@
 		</div>
 
 		<script>
-			// FIXME: Continuing countdown timer: https://developer.mozilla.org/en-US/docs/Web/API/setInterval
+			// FIXME: Continuing countdown timer
 			// TODO: Add visual countdown
-			// TODO Add selectable time limit
+
 			let countdown; //global variable for countdown
 
 			const holes = document.querySelectorAll(".hole");
@@ -84,20 +84,24 @@
 				}, time);
 			}
 
-			function startGame() {
-				clearInterval(); //clear any previously running timer
-				timerDisplay.textContent = ""; //clear any previous text content
-
+			function resetGame() {
+				timerDisplay.textContent = "";
 				scoreBoard.textContent = 0;
 				score = 0;
 				timeUp = false;
+			}
+
+			function startGame() {
+				resetGame();
 				const seconds = parseInt(this.dataset.time);
 				peep();
 				countdownTimer(seconds);
 				//setTimeout(() => (timeUp = true), 10000);
 			}
 
-			function stopGame() {}
+			function stopGame() {
+				resetGame();
+			}
 
 			function bonk(e) {
 				if (!e.isTrusted) {
@@ -110,27 +114,28 @@
 			}
 
 			function countdownTimer(seconds) {
-				clearInterval(seconds); //clear any running timers
-
-				let milliseconds = seconds * 1000;
-				timerDisplay.textContent = seconds;
+				clearInterval(countdown); //clear any running timers
+				const now = Date.now();
+				const end = now + seconds * 1000;
+				console.log(now, end);
+				countdownDisplay(seconds);
 				setInterval(() => {
-					//every second, function should
-					seconds--; // decrement seconds by one
-					countdownDisplay(seconds);
-					console.log(seconds);
-					if (seconds < 0) {
-						// check if time is up
-						timeUp = true; // if so, set timeUp to true
-						timerDisplay.textContent = "Game Over!";
-						clearInterval(countdown);
+					countdown = Math.round((end - Date.now()) / 1000);
+					if (countdown < 0) {
+						timeUp = true;
+						//clearInterval(countdown);
 						return;
 					}
+					countdownDisplay(countdown);
 				}, 1000);
 			}
 
 			function countdownDisplay(seconds) {
-				timerDisplay.textContent = `${seconds} left!`;
+				if (!timeUp) {
+					timerDisplay.textContent = `${seconds} left!`;
+				} else {
+					timerDisplay.textContent = "Game Over! Try Again.";
+				}
 			}
 
 			timerButtons.forEach((button) =>
