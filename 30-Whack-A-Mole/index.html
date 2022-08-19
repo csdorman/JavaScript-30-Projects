@@ -119,11 +119,15 @@
 				const end = now + seconds * 1000;
 				console.log(now, end);
 				countdownDisplay(seconds);
+				timer(seconds, end);
+			}
+
+			function timer(countdown, end) {
 				setInterval(() => {
 					countdown = Math.round((end - Date.now()) / 1000);
+					console.log(countdown);
 					if (countdown < 0) {
-						timeUp = true;
-						//clearInterval(countdown);
+						clearInterval(countdown);
 						return;
 					}
 					countdownDisplay(countdown);
