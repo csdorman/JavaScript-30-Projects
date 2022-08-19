@@ -123,14 +123,14 @@
 			}
 
 			function timer(countdown, end) {
-				setInterval(() => {
-					countdown = Math.round((end - Date.now()) / 1000);
-					console.log(countdown);
-					if (countdown < 0) {
+				countdown = setInterval(() => {
+					countdownTime = Math.round((end - Date.now()) / 1000);
+					console.log(countdownTime);
+					if (countdownTime < 0) {
 						clearInterval(countdown);
 						return;
 					}
-					countdownDisplay(countdown);
+					countdownDisplay(countdownTime);
 				}, 1000);
 			}
 
