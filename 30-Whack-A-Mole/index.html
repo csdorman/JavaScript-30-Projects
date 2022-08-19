@@ -8,8 +8,10 @@
 	<body>
 		<h1>Whack-A-Mole! <span class="score">0</span></h1>
 		<div class="controls">
-			<button class="start" onClick="startGame()">Start!</button>
-			<button class="stop" onClick="stopGame()">Stop Game</button>
+			<div class="start-stop">
+				<button class="start" onClick="startGame()">Start!</button>
+				<button class="stop" onClick="stopGame()">Stop Game</button>
+			</div>
 			<div class="timer-lengths">
 				<button data-time="5" class="timer-btn">5 Seconds</button>
 				<button data-time="10" class="timer-btn">10 Seconds</button>
@@ -17,9 +19,11 @@
 				<button data-time="30" class="timer-btn">30 Seconds</button>
 				<button data-time="60" class="timer-btn">60 Seconds</button>
 			</div>
-			<p class="timer">
-				Time remaining: <span class="countdown-timer"></span>
-			</p>
+			<div class="timer-view">
+				<p class="timer">
+					Time remaining: <span class="countdown-timer"></span>
+				</p>
+			</div>
 		</div>
 
 		<div class="game">
@@ -44,9 +48,6 @@
 		</div>
 
 		<script>
-			// FIXME: Continuing countdown timer
-			// TODO: Add visual countdown
-
 			let countdown; //global variable for countdown
 
 			const holes = document.querySelectorAll(".hole");
