@@ -122,11 +122,13 @@
 				timer(seconds, end);
 			}
 
-			function timer(countdown, end) {
+			function timer(time, end) {
 				countdown = setInterval(() => {
 					countdownTime = Math.round((end - Date.now()) / 1000);
 					console.log(countdownTime);
 					if (countdownTime < 0) {
+						timeUp = true;
+						countdownDisplay(countdownTime);
 						clearInterval(countdown);
 						return;
 					}
@@ -138,7 +140,7 @@
 				if (!timeUp) {
 					timerDisplay.textContent = `${seconds} left!`;
 				} else {
-					timerDisplay.textContent = "Game Over! Try Again.";
+					timerDisplay.textContent = "Game Over!";
 				}
 			}
 
